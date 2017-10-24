@@ -8,8 +8,8 @@ Uploaders: Sune Vuorela <sune@debian.org>,
            Lisandro Damian Nicanor Parez Meyer <lisandro@debian.org>,
            Timo Jyrinki <timo@debian.org>,
            Dmitry Shachnev <mitya57@debian.org>
-Build-Depends: debhelper (>= 9.20160114~),
-               default-libmysqlclient-dev,
+Build-Depends: debhelper (>= 9),
+               libmysqlclient-dev,
                dh-exec,
                dpkg-dev (>= 1.17.14),
                firebird-dev [kfreebsd-any linux-any],
@@ -39,7 +39,7 @@ Build-Depends: debhelper (>= 9.20160114~),
                libproxy-dev,
                libpulse-dev,
                libsqlite3-dev,
-               libssl1.0-dev,
+               libssl-dev,
                libudev-dev [linux-any],
                libx11-dev,
                libx11-xcb-dev,
@@ -61,13 +61,13 @@ Build-Depends: debhelper (>= 9.20160114~),
                libxkbcommon-dev,
                libxkbcommon-x11-dev,
                libxrender-dev,
-               pkg-kde-tools (>= 0.15.17~),
+               pkg-kde-tools (>= 0.15.17),
                publicsuffix,
                unixodbc-dev,
                xvfb,
                zlib1g-dev
-Build-Depends-Indep: libqt5sql5-sqlite (>= 5.8.0+dfsg~) <!nodoc>,
-                     qttools5-dev-tools (>= 5.8.0~) <!nodoc>
+Build-Depends-Indep: libqt5sql5-sqlite (>= 5.6.0~) <!nodoc>,
+                     qttools5-dev-tools (>= 5.6.0~) <!nodoc>
 Standards-Version: 4.1.0
 Homepage: http://qt-project.org/
 Vcs-Git: https://anonscm.debian.org/git/pkg-kde/qt/qtbase.git
