@@ -1,4 +1,4 @@
-qtbase-opensource-src (5.9.1+dfsg-10ubuntu1) artful; urgency=medium
+qtbase-opensource-src (5.9.1+dfsg+ubports) artful; urgency=medium
 
   * Merge with Debian unstable, remaining changes:
     - Depend on libssl1.0.0 instead of libssl1.0.2.
