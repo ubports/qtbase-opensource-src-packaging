@@ -1,4 +1,4 @@
-qtbase-opensource-src (5.9.1+dfsg+ubports) artful; urgency=medium
+qtbase-opensource-src (5.9.1+dfsg+ubports) xenial; urgency=medium
 
   * Merge with Debian unstable, remaining changes:
     - Depend on libssl1.0.0 instead of libssl1.0.2.
@@ -510,7 +510,7 @@ qtbase-opensource-src (5.6.1+dfsg-3ubuntu5~1) yakkety; urgency=medium
   * debian/patches/dbusmenu-Don-t-leave-dangling-pointers-when-menus-ar.patch:
     - Fix a crasher in qdbusmenu code (LP: #1620937)
   * debian/patches/QMenuBar-Get-rid-of-QMenuBarPrivate-nativeMenuBar.patch:
-    - Improve menu bar code, but for now allow_native_menubar.diff is still 
+    - Improve menu bar code, but for now allow_native_menubar.diff is still
       needed.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Fri, 16 Sep 2016 05:08:05 +0000
@@ -537,7 +537,7 @@ qtbase-opensource-src (5.6.1+dfsg-3ubuntu3~3) yakkety; urgency=medium
 
   [ Timo Jyrinki ]
   * debian/patches/QDBusServer-delay-processing-of-D-Bus-messages.patch:
-    - Fix DBus message processing (LP: #1608822) 
+    - Fix DBus message processing (LP: #1608822)
   * debian/patches/xcb-Send-also-text-plain-when-a-text-uri-list-is-dro.patch:
     - Fix drag and drop from Qt to skype (LP: #1586857)
   * debian/patches/qt5-qmake-arm-linux-gnueabihf:
@@ -545,7 +545,7 @@ qtbase-opensource-src (5.6.1+dfsg-3ubuntu3~3) yakkety; urgency=medium
   * debian/patches/Make-sure-connection-is-not-null-before-using-it.patch:
     - Fix unity8 crasher (LP: #1612309)
   * Update symbols with pkgkde-mark-qt5-private-symbols.
-  * Disable printsupport tests that started failing but only on builders, 
+  * Disable printsupport tests that started failing but only on builders,
     possibly with new glibc. See LP: #1612767 for details.
 
   [ Dmitry Shachnev ]
@@ -569,7 +569,7 @@ qtbase-opensource-src (5.6.1+dfsg-3ubuntu2~1) yakkety; urgency=medium
 
 qtbase-opensource-src (5.6.1+dfsg-3ubuntu1~4) yakkety; urgency=medium
 
-  * New upstream release. 
+  * New upstream release.
   * Migrate symbols using the script to the Qt_5 versioning scheme.
   * Update symbols and bump symbols abi.
   * Rebase and refresh enable-tests.patch.
@@ -582,8 +582,8 @@ qtbase-opensource-src (5.6.1+dfsg-3ubuntu1~4) yakkety; urgency=medium
   * Rebase patches for 5.6.1, and drop the following:
     - Blacklist-Mali-T760-Mali-T720-from-supporting-BGRA.patch: upstreamed
     - debian/patches/detect-indicator-application.diff: upstreamed
-    - debian/patches/fix-duplicate-qnam-finished.patch: folded in to the 
-      remaining parts of qnam-ubuntu-fix6.patch, half of which were upstreamed 
+    - debian/patches/fix-duplicate-qnam-finished.patch: folded in to the
+      remaining parts of qnam-ubuntu-fix6.patch, half of which were upstreamed
       in Qt 5.6.1
   * Skip a test related to LP: #1603991
   * debian/patches/color-fonts.patch,
@@ -815,7 +815,7 @@ qtbase-opensource-src (5.5.1+dfsg-17ubuntu2~2) yakkety; urgency=medium
 
 qtbase-opensource-src (5.5.1+dfsg-17ubuntu1) yakkety; urgency=medium
 
-  * Merge with Debian because qtchooser got autosynced from Debian and broke 
+  * Merge with Debian because qtchooser got autosynced from Debian and broke
     package installation.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Mon, 23 May 2016 08:15:39 +0000
@@ -841,7 +841,7 @@ qtbase-opensource-src (5.5.1+dfsg-16ubuntu10) yakkety; urgency=medium
 
   * debian/patches/Blacklist-Mali-T760-Mali-T720-from-supporting-BGRA.patch
     - Backport from upstream 5.6 (LP: #1557915) (LP: #1559906)
-  * Add two patches from stable Qt 5.6 branch to fix another case of 
+  * Add two patches from stable Qt 5.6 branch to fix another case of
     QXcbWindow crashes (LP: #1571158).
     - debian/patches/Fix-crash-because-of-NULL-screen-in-QXcbWindow.patch
     - debian/patches/QtGui-Don-t-set-a-screen-to-a-child-window.patch
@@ -895,7 +895,7 @@ qtbase-opensource-src (5.5.1+dfsg-16ubuntu4) xenial; urgency=medium
 
   * debian/patches/qdoc-Wrap-QML-read-only-and-default-qualifiers-in-br.patch:
     - Fix typos in property definitions. (LP: #1557259)
-  * Temporarily disable a test broken by glibc upgrade (LP: #1560528). 
+  * Temporarily disable a test broken by glibc upgrade (LP: #1560528).
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Tue, 29 Mar 2016 11:30:45 +0000
 
@@ -948,7 +948,7 @@ qtbase-opensource-src (5.5.1+dfsg-15) unstable; urgency=medium
 qtbase-opensource-src (5.5.1+dfsg-14ubuntu3) xenial; urgency=medium
 
   * debian/patches/Xcb-fix-crash-on-screen-power-save.patch:
-    - Fix additional cases where crash could occur on monitor disconnections 
+    - Fix additional cases where crash could occur on monitor disconnections
       or power save. (LP: #1551122)
   * Build with C.UTF-8 locale to (LP: #1551145) and re-enable tests (LP: #1548686)
 
@@ -956,7 +956,7 @@ qtbase-opensource-src (5.5.1+dfsg-14ubuntu3) xenial; urgency=medium
 
 qtbase-opensource-src (5.5.1+dfsg-14ubuntu2) xenial; urgency=medium
 
-  * debian/patches/enable-tests.patch: some qnetworkcookiejar tests have 
+  * debian/patches/enable-tests.patch: some qnetworkcookiejar tests have
     started failing without any Qt changes (LP: #1548686)
   * Notify-when-the-primary-screen-changes.patch
     xcb-Handle-screen-siblings-in-QXcbVirtualDesktop.patch
@@ -1056,7 +1056,7 @@ qtbase-opensource-src (5.5.1+dfsg-10ubuntu2) xenial; urgency=medium
 qtbase-opensource-src (5.5.1+dfsg-10ubuntu1) xenial; urgency=medium
 
   * Merge with Debian.
-  * qnetworkaccessmanager_accessibility.diff replaces 
+  * qnetworkaccessmanager_accessibility.diff replaces
     Make-sure-networkAccessibilityChanged-is-emitted.patch.
   * debian/patches/series: reorder to apply Ubuntu's backported patches
 
@@ -1168,7 +1168,7 @@ qtbase-opensource-src (5.5.1+dfsg-6ubuntu1) xenial; urgency=medium
     - Backport. Prefer QT_PLUGIN_PATH over compiled-in paths (LP: #1519927)
   * debian/patches/Fix-crash-on-exit-caused-by-QStringLiterals.patch
     - Backport. Fix a crasher on exit (LP: #1436973)
-  * Replace our workaround for font rendering with new backported upstream 
+  * Replace our workaround for font rendering with new backported upstream
     patches:
     - Add debian/patches/Fix-falsely-reported-style-for-fallback-font.patch
     - Add debian/patches/Remove-historical-4-padding-in-QFontEngine-alphaMapF.patch
@@ -1425,7 +1425,7 @@ qtbase-opensource-src (5.4.2+dfsg-2ubuntu3) trusty; urgency=medium
 
   [ Gary Wang ]
   * debian/patches/enable_fonts_always_smoothly.patch:
-    - Workaround a glyph rendering problem by forcing distance field 
+    - Workaround a glyph rendering problem by forcing distance field
       rendering (LP: #1462982) (LP: #1475205)
 
  -- Timo Jyrinki <timo.jyrinki@iki.fi>  Wed, 05 Aug 2015 11:44:25 +0300
@@ -1491,7 +1491,7 @@ qtbase-opensource-src (5.4.1+dfsg-4ubuntu3) wily; urgency=medium
 
   * debian/patches/series: enable_pie.patch is actually an upstreamed patch
   * Re-enable the other fpic patches, and do not enforce fpie anymore
-  * debian/patches/latest_fpic_commits.patch: Take even more of the 5.4.2 
+  * debian/patches/latest_fpic_commits.patch: Take even more of the 5.4.2
     last minute patches.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Wed, 03 Jun 2015 13:06:41 +0000
@@ -1515,7 +1515,7 @@ qtbase-opensource-src (5.4.1+dfsg-4ubuntu1) wily; urgency=medium
     - Support OpenGL ES twin packages for x86
     - qt5-qmake-arm-linux-gnueabihf alternative qmake
     - Don't set -reduce-relocations and don't revert the upstream bsymbolic
-      disabling on non-x86 because of a problem with with Unity 8 on arm - 
+      disabling on non-x86 because of a problem with with Unity 8 on arm -
       https://launchpad.net/bugs/1403758
     - Use enable_pie.patch to fix QObject::connect failing on ARM
     - Provides: qt-default in qt5-default
@@ -1550,9 +1550,9 @@ qtbase-opensource-src (5.4.1+dfsg-4) experimental; urgency=medium
 
 qtbase-opensource-src (5.4.1+dfsg-3ubuntu1) wily; urgency=medium
 
-  * Update symbols to fix ppc64el FTBFS. 
+  * Update symbols to fix ppc64el FTBFS.
   * Sync with Debian packaging
-    - Do not enable require_fpic_instead_of_fpie.patch or 
+    - Do not enable require_fpic_instead_of_fpie.patch or
       make_qglobal_h_complain_if_you_use_fpie.patch before GCC5 is in use.
   * Skip a newly failing test on wily.
 
@@ -1788,8 +1788,8 @@ qtbase-opensource-src (5.4.0+dfsg-4ubuntu2) vivid; urgency=medium
     - Disable the tests for new QStorageInfo class which partially fail
     - Disable some widgets tests that fail (desktop only)
     - Disable one qlogging test
-  * Drop reduce-relocations option from configure, since it causes black screen 
-    for Unity8 on armhf because of linking problems. Comment out the related 
+  * Drop reduce-relocations option from configure, since it causes black screen
+    for Unity8 on armhf because of linking problems. Comment out the related
     revert of earlier upstream commit. (LP: #1403758)
   * debian/patches/Add-C++11-if-available-for-QVariant-autotest.patch
     - Fix tst_qvariant (LP: #1408273)
@@ -1914,7 +1914,7 @@ qtbase-opensource-src (5.3.2+dfsg-4ubuntu6) vivid; urgency=medium
 
 qtbase-opensource-src (5.3.2+dfsg-4ubuntu5) vivid; urgency=medium
 
-  * Rename qt5-qmake-cross-armhf to qt5-qmake-arm-linux-gnueabihf 
+  * Rename qt5-qmake-cross-armhf to qt5-qmake-arm-linux-gnueabihf
 
  -- Zoltán Balogh <zoltan@bakter.hu>  Thu, 20 Nov 2014 10:33:16 +0000
 
@@ -1931,7 +1931,7 @@ qtbase-opensource-src (5.3.2+dfsg-4ubuntu4) vivid; urgency=medium
     - debian/patches/Support-dual-sim-in-QtBearer-s-networkmanager-backen.patch
     - debian/patches/QtBearer-networkmanager-make-sure-to-set-flag-Active.patch
       + upstream patch set 7
-  * debian/patches/enable-tests: Disable tests that assume generic plugin 
+  * debian/patches/enable-tests: Disable tests that assume generic plugin
     instead of the network-manager plugin
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Wed, 19 Nov 2014 07:30:27 +0000
@@ -1955,7 +1955,7 @@ qtbase-opensource-src (5.3.2+dfsg-4ubuntu1) vivid; urgency=medium
 
   * New upstream release
   * Sync with Debian, higlights:
-    - Clear the list of archs that should not use pre compiled headers. 
+    - Clear the list of archs that should not use pre compiled headers.
       We've been told that with GCC 4.9 this should not be necessary anymore.
       (LP: #1318635)
     - Add multitouch protocol translation support.
@@ -2158,8 +2158,8 @@ qtbase-opensource-src (5.3.0+dfsg-2ubuntu7) utopic; urgency=medium
 
   * Fix-crash-in-QNetworkAccessCacheBackend-closeDownstr.patch:
     - Cherry-pick a fix from upstream (LP: #1371472)
-  * enable-tests.patch: skip an additional test that has started failing 
-    even on no-change rebuild 
+  * enable-tests.patch: skip an additional test that has started failing
+    even on no-change rebuild
   * Update symbols (gcc 4.9)
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Wed, 24 Sep 2014 13:22:20 +0000
@@ -2372,7 +2372,7 @@ qtbase-opensource-src (5.2.1+dfsg-1ubuntu9) trusty; urgency=medium
   * debian/patches/Fix-log_clusters-calculation-in-HarfBuzz-NG-code-pat.patch
   * debian/patches/HarfBuzz-NG-Hide-characters-that-should-normally-be-.patch
   * debian/patches/Minor-optimization-for-QTextEngine-shapeText.patch
-    - Cherry-pick latest HarfBuzz-NG changes from upstream including the one 
+    - Cherry-pick latest HarfBuzz-NG changes from upstream including the one
       fixing the glyph issue https://codereview.qt-project.org/#change,81150
       (LP: #1285184)
 
@@ -2787,14 +2787,14 @@ qtbase-opensource-src (5.1.0+dfsg-1) experimental; urgency=low
 
 qtbase-opensource-src (5.0.2+dfsg1-7ubuntu18) trusty; urgency=medium
 
-  [ Albert Astals ] 
+  [ Albert Astals ]
   * Add 0001-Do-not-overwrite-basePixmap-of-QIconLoader-PixmapEnt.patch:
     - Backport an upstreamed fix to blurry icons (LP: #1271158)
 
   [ Łukasz 'sil2100' Zemczak ]
   * Add fix_destroy_qapp_segfault.diff:
-    - Fix a segfault when QWidget element gets freed after the main 
-      application exits. Do not assume qApp is present. It's already 
+    - Fix a segfault when QWidget element gets freed after the main
+      application exits. Do not assume qApp is present. It's already
       fixed in upstream Qt 5.2 (LP: #1273306)
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 06 Feb 2014 11:57:09 +0000
@@ -2859,7 +2859,7 @@ qtbase-opensource-src (5.0.2+dfsg1-7ubuntu11) saucy; urgency=low
 qtbase-opensource-src (5.0.2+dfsg1-7ubuntu10) saucy; urgency=low
 
   * debian/patches/fix_rowinserted.patch:
-    - Fix a bug in QSortFilterProxyModel by picking a patch 
+    - Fix a bug in QSortFilterProxyModel by picking a patch
       from upstream (LP: #1234603)
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 03 Oct 2013 12:58:40 +0300
@@ -2874,7 +2874,7 @@ qtbase-opensource-src (5.0.2+dfsg1-7ubuntu9) saucy; urgency=low
 qtbase-opensource-src (5.0.2+dfsg1-7ubuntu8) saucy; urgency=low
 
   * load_testability_from_env_var.patch:
-    - Add a patch to support testability enablement also from 
+    - Add a patch to support testability enablement also from
       an environment variable (LP: #1210034)
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Fri, 09 Aug 2013 07:22:18 +0300
@@ -3014,7 +3014,7 @@ qtbase-opensource-src (5.0.2+dfsg1-4ubuntu1) saucy; urgency=low
     - debian/patches/make_QColor_understand_AARRGGBB.patch (LP: #1174589)
   * Cherry-pick a fix from upstream to build with GCC 4.8
     - debian/patches/rename_qabs_function_for_timeval.patch
-  * Build-depend on libxkbcommon-dev (LP: #1177496) 
+  * Build-depend on libxkbcommon-dev (LP: #1177496)
   * Update XEmbed patch from upstream Gerrit
   * Make sqlite the first recommended SQL plugin, remove ibase
 
@@ -3025,7 +3025,7 @@ qtbase-opensource-src (5.0.2+dfsg1-4ubuntu1) saucy; urgency=low
 
   [ Scott Kitterman ]
   * Revert debian/patches/enable_appmenu_support.diff for saucy as agreed
-    since appmenu for saucy will use qpa 
+    since appmenu for saucy will use qpa
 
   [ Timo Jyrinki ]
   * Re-syncs until Debian experimental 5.0.2+dfsg1-4, remaining changes:
@@ -3034,7 +3034,7 @@ qtbase-opensource-src (5.0.2+dfsg1-4ubuntu1) saucy; urgency=low
     - Provides: qt-default to qt5-default
     - Build depend on libxkbcommon-dev
     - 7 upstream and Ubuntu patches mentioned above
-  * As requested, temporarily re-add the appmenu support until qpa 
+  * As requested, temporarily re-add the appmenu support until qpa
     plugin support is ready. Easily revertable.
 
  -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Fri, 03 May 2013 09:40:08 -0700
@@ -3124,13 +3124,13 @@ qtbase-opensource-src (5.0.1+dfsg-0ubuntu4) raring; urgency=low
   * debian/rules:
     - Enable appmenu support when building the package
 
-  [ Timo Jyrinki ] 
-  * Add build dependency on libgtk2.0-dev (and libatk1.0-dev) for 
+  [ Timo Jyrinki ]
+  * Add build dependency on libgtk2.0-dev (and libatk1.0-dev) for
     gtkstyle support (LP: #1126210)
   * Add Vcs-Bzr for ~kubuntu-packagers
-  * Because qt5.conf was moved to qtbase5-dev, depend on it from 
-    qt5-default. This means standalone development binaries like 
-    qmlscene cannot be used from the default path without installing 
+  * Because qt5.conf was moved to qtbase5-dev, depend on it from
+    qt5-default. This means standalone development binaries like
+    qmlscene cannot be used from the default path without installing
     development headers. Use deep paths instead.
   * Fix qmake-qt5 package description (LP: #1133196)
 
