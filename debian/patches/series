@@ -1,0 +1,14 @@
+# Backported from upstream.
+fix_atspi_condition.diff
+
+# Debian specific.
+gnukfreebsd.diff
+no_htmlinfo_example.diff
+remove_privacy_breachs.diff
+link_fbclient.diff
+gnukfreebsd_cloexec.diff
+armv4.diff
+nonlinux_utime.diff
+
+# Ubuntu specific.
+#enable-tests.patch
