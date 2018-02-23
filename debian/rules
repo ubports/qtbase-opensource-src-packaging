@@ -72,7 +72,7 @@ else
 endif
 
 %:
-	dh $@ --with pkgkde_symbolshelper
+	dh $@ --parallel --with pkgkde_symbolshelper
 
 override_dh_auto_configure:
 ifneq (,$(filter cross,$(DEB_BUILD_PROFILES)))
