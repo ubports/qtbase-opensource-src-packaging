@@ -60,7 +60,7 @@ else
 endif
 
 %:
-	dh $@ --with pkgkde_symbolshelper
+	dh $@ --parallel --with pkgkde_symbolshelper
 
 override_dh_auto_configure:
 	MAKEFLAGS="-j$(NUMJOBS) ${CXXFLAGS:%=EXTRA_CXXFLAGS+=%} ${LDFLAGS:%=EXTRA_LFLAGS+=%}" \
