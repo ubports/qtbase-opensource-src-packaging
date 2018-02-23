@@ -6,7 +6,7 @@ Last-Update: 2017-07-04
 
 --- a/qmake/library/ioutils.cpp
 +++ b/qmake/library/ioutils.cpp
-@@ -215,7 +215,7 @@
+@@ -215,7 +215,7 @@ bool IoUtils::touchFile(const QString &t
          *errorString = fL1S("Cannot stat() reference file %1: %2.").arg(referenceFileName, fL1S(strerror(errno)));
          return false;
      }

@@ -1,5 +1,6 @@
 # Backported from upstream.
-fix_atspi_condition.diff
+qdnslookup_crash.diff
+dead_key_symbols.diff
 
 # Debian specific.
 gnukfreebsd.diff
@@ -9,6 +10,4 @@ link_fbclient.diff
 gnukfreebsd_cloexec.diff
 armv4.diff
 nonlinux_utime.diff
-
-# Ubuntu specific.
-#enable-tests.patch
+qt5-qtbase-5.9.1-openssl11.patch
