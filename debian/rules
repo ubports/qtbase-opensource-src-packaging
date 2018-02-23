@@ -43,17 +43,8 @@ ifeq ($(DEB_HOST_ARCH_CPU),i386)
 	cpu_opt = -no-sse2 -no-pch
 endif
 
-# Run tests only on archs known to pass in the past
-testrun_architectures := amd64 armhf i386
-
 ifeq ($(DEB_HOST_ARCH_OS),linux)
-  ifneq (,$(filter $(DEB_HOST_ARCH),alpha ia64 mips64 mips64el arm64))
 	platform_arg = linux-g++
-  else ifeq ($(DEB_HOST_ARCH_BITS),64)
-	platform_arg = linux-g++-64
-  else
-	platform_arg = linux-g++
-  endif
 else ifeq ($(DEB_HOST_ARCH_OS),hurd)
 	platform_arg = hurd-g++
 else ifeq ($(DEB_HOST_ARCH_OS),kfreebsd)
@@ -69,14 +60,14 @@ else
 endif
 
 %:
-	dh $@ --parallel --with pkgkde_symbolshelper
+	dh $@ --with pkgkde_symbolshelper
 
 override_dh_auto_configure:
 	MAKEFLAGS="-j$(NUMJOBS) ${CXXFLAGS:%=EXTRA_CXXFLAGS+=%} ${LDFLAGS:%=EXTRA_LFLAGS+=%}" \
 	        ./configure \
 	            -confirm-license \
 	            -prefix "/usr" \
-	            -bindir "/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/bin" \
+	            -bindir "/usr/lib/qt5/bin" \
 	            -libdir "/usr/lib/$(DEB_HOST_MULTIARCH)" \
 	            -docdir "/usr/share/qt5/doc" \
 	            -headerdir "/usr/include/$(DEB_HOST_MULTIARCH)/qt5" \
@@ -128,13 +119,6 @@ override_dh_auto_configure:
 	# Prevent Makefile from re-running qmake after the .pri was changed.
 	touch Makefile
 
-override_dh_auto_test:
-ifeq ($(DEB_HOST_ARCH),$(filter $(DEB_HOST_ARCH),$(testrun_architectures)))
-ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
-	xvfb-run -a -s "-screen 0 640x480x24" make check QT_PLUGIN_PATH=$(CURDIR)/plugins LD_LIBRARY_PATH=$(CURDIR)/lib PATH=$(CURDIR)/bin:$(PATH) -k
-endif
-endif
-
 override_dh_auto_clean:
 	[ ! -f Makefile ] || $(MAKE) confclean distclean
 
@@ -161,7 +145,6 @@ override_dh_auto_clean:
 	;
 
 	# Leftover dirs
-	# Ubuntu diff: tests enablement related
 	find -depth -type d \( -false \
 	  -o -name debug-shared \
 	  -o -name debug-static \
@@ -173,11 +156,10 @@ override_dh_auto_clean:
 	  -o -name .rcc \
 	  -o -name release-shared \
 	  -o -name release-static \
-	  -o -name .uic \) -print \
-        | xargs rm -rf
+	  -o -name .uic \
+	\) -print0 | xargs -0 rm -rf
 
 	# Leftover files and all symlinks
-	# Ubuntu diff: tests enablement related
 	find \( -false \
 	  -o -name lib\*.a \
 	  -o -name Makefile.Debug \
@@ -186,13 +168,7 @@ override_dh_auto_clean:
 	  -o -name \*.prl \
 	  -o -name lib\*.so \
 	  -o -type l \
-	  -o -name \*.so \
-	  -o -name \*.so.debug \
-        \) -print \
-        | grep -v tests/auto/corelib/plugin/qpluginloader/elftest \
-        | grep -v tests/auto/corelib/io/qdir/types \
-        | grep -v tests/auto/corelib/plugin/qlibrary/library_path/invalid.so \
-        | xargs rm -rf
+	\) -print0 | xargs -0 rm -rf
 
 	# Delete all Makefiles, excluding some from src/3rdparty
 	find $(CURDIR) -name Makefile \
@@ -203,10 +179,9 @@ override_dh_auto_clean:
 	-print0 | xargs -0 rm -rf
 
 	# Any remaining executables
-	# Ubuntu diff: tests enablement related
 	find $(CURDIR) -type f -perm /u+x,g+x,o+x -exec file -i '{}' \; \
 	| grep -e application/x-executable \
-	| cut -d ':' -f 1 | grep -v tests/auto | xargs rm -f
+	| cut -d ':' -f 1 | xargs rm -f
 
 	# Generated on build
 	rm -vf debian/stamp-makefile-build-tools
@@ -279,11 +254,22 @@ endif
 		-regex '.*\.\(app\|conf\|cpp\|h\|js\|php\|png\|pro\|xml\|xsl\)$$' \
 		-exec chmod a-x {} \;
 
+	# Helper files for cross-building
+	mkdir -p debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/qt5
+	sed 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/' debian/qt.conf.in \
+		> debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/qt.conf
+
+	mkdir -p debian/tmp/usr/bin
+	sed -e 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g' \
+		-e 's/@DEB_HOST_GNU_TYPE@/$(DEB_HOST_GNU_TYPE)/g' \
+		< debian/qmake-cross-wrapper.in > debian/tmp/usr/bin/$(DEB_HOST_GNU_TYPE)-qmake
+	chmod +x debian/tmp/usr/bin/$(DEB_HOST_GNU_TYPE)-qmake
+
 override_dh_auto_install-indep:
 	dh_auto_build -- INSTALL_ROOT=$(CURDIR)/debian/tmp install_docs
 
-override_dh_install:
-	dh_install --fail-missing
+override_dh_missing:
+	dh_missing --fail-missing
 
 override_dh_installchangelogs:
 	if [ -f $(upstream_changes) ] ; then \
