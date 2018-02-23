@@ -10,4 +10,3 @@ link_fbclient.diff
 gnukfreebsd_cloexec.diff
 armv4.diff
 nonlinux_utime.diff
-qt5-qtbase-5.9.1-openssl11.patch
