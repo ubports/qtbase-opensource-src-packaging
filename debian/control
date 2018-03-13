@@ -424,6 +424,35 @@ Description: Qt 5 qmake Makefile generator tool
  many default values used to generate appropriate Makefiles.
  .
  This package contains also these platform specifications.
+ 
+Package: qt5-qmake-arm-linux-gnueabihf
+Architecture: amd64 i386 
+Multi-Arch: same
+Section: devel
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Breaks: qt5-qmake-cross-armhf (<< 5.3.2+dfsg-4ubuntu5)
+Replaces: qt5-qmake-cross-armhf (<< 5.3.2+dfsg-4ubuntu5)
+Description: Qt 5 qt5-qmake-arm-linux-gnueabihf Makefile generator tool
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the Qt 5 qt5-qmake-arm-linux-gnueabihf, a tool 
+ that helps simplify the build process for development project across 
+ different platforms.
+ qmake-cross-armhf automates the generation of Makefiles so that only 
+ a few lines of information are needed to create each Makefile. 
+ qmake can be used for any software project, whether it is written 
+ using Qt or not.
+ .
+ Qt 5 qt5-qmake-arm-linux-gnueabihf requires a platform and compiler 
+ description file which contains many default values used to generate 
+ appropriate Makefiles.
+ .
+ This package contains also these platform specifications.
+ .
+ The qt5-qmake-arm-linux-gnueabihf is made for creating Makefile in 
+ multiarch build environment. It can be used for example in a i386 chroot 
+ with armhf development packages.
 
 Package: qtbase5-examples
 Architecture: any
