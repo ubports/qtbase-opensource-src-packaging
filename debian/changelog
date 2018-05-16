@@ -1,8 +1,107 @@
-qtbase-opensource-src (5.9.3+dfsg-0ubports7) xenial; urgency=medium
+qtbase-opensource-src (5.9.5+dfsg-0ubports1) xenial; urgency=medium
 
-  * Build for UBports 
+  [ Simon Quigley ]
+  * New upstream release.
+    - Refresh patches.
+    - Update symbols from build logs.
+  * Bump independent build dependencies.
+  * Bump the virtual ABI package from qtbase-abi-5-9-4 to qtbase-abi-5-9-5.
+  * Fix loading OpenGL library when libGL.so is missing (LP: #1761708).
+    - fix-loading-OpenGL-when-symlink-missing.patch
+    - QTBUG-67537
 
- -- Marius <mariogrip@ubuntu.com>  Fri, 23 Feb 2018 01:50:05 +0100
+  [ Dmitry Shachnev ]
+  * Update list of Qt WebKit build-dependencies in debian/README.source.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Thu, 12 Apr 2018 18:24:40 -0500
+
+qtbase-opensource-src (5.9.4+dfsg-0ubuntu4) bionic; urgency=medium
+
+  * Merge from Debian Sid. Remaining changes:
+    - New upstream release (5.9.4), drop upstream patches and update symbols
+      from build logs.
+    - Depend on libssl-dev instead of libssl1.0-dev. Also backport an upstream
+      patch enabling OpenSSL 1.1 support.
+    - Add arm64 to the architectures that GLES is enabled on.
+    - Backport some libinput and mesa 18 patches from upstream.
+  * Update symbols from build logs.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Thu, 15 Mar 2018 23:37:26 -0500
+
+qtbase-opensource-src (5.9.2+dfsg-12) unstable; urgency=medium
+
+  * Add patch to extend MariaDB define checks. It seems that this codes makes
+    akonadi not fail on long time running sessions. Thanks Luigi Toscano for
+    the pointer.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Fri, 16 Feb 2018 15:36:32 -0300
+
+qtbase-opensource-src (5.9.2+dfsg-11) unstable; urgency=medium
+
+  * Add Martin Briza's hidpi_scale_at_192.diff to solve wrong HiDPI scalling
+   (Closes: #884956). Thanks Fedora guys!
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Fri, 16 Feb 2018 12:11:28 -0300
+
+qtbase-opensource-src (5.9.4+dfsg-0ubuntu3) bionic; urgency=medium
+
+  [ Simon Quigley ]
+  * Merge from Debian Sid, remaining changes:
+    - New upstream release (5.9.4), drop upstream patches.
+    - Build with bundled pcre2 library.
+    - Build depend on libssl-dev instead of libssl1.0-dev.
+    - Depend on libssl1.1 instead of libssl1.0.2.
+    - Add arm64 to the architectures that GLES is enabled on.
+  * Correctly update the symbols files for the ABI bump.
+  * Backport upstream patches to fix several libinput issues. Thanks to Ikey
+    Doherty from Solus for the tip.
+
+  [ Dmitry Shachnev ]
+  * Add upstream patch to fix rendering issues with Mesa 18.
+  * Add upstream patch to add NewMenu D-Bus signal for dbustray.
+    Thanks to Marco Trevisan.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Sat, 24 Feb 2018 22:58:18 -0600
+
+qtbase-opensource-src (5.9.4+dfsg-0ubuntu2) bionic; urgency=medium
+
+  * Update the copyright file.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Thu, 15 Feb 2018 21:45:59 -0600
+
+qtbase-opensource-src (5.9.2+dfsg-10) unstable; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * Fix processing multiple headers with the same name in HTTP/2 (closes:
+    #886395).
+  * Update symbols files from hurd-i386 build logs.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 09 Feb 2018 16:40:07 +0300
+
+qtbase-opensource-src (5.9.2+dfsg-9) unstable; urgency=medium
+
+  * Check the existance of /etc/xdg/QtProject before trying to remove it
+    (Closes: #889504).
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Sat, 03 Feb 2018 22:12:49 -0300
+
+qtbase-opensource-src (5.9.2+dfsg-8) unstable; urgency=medium
+
+  * qmake-cross-wrapper: Add special handling of -makefile and -project flags.
+  * Remove empty /etc/xdg/QtProject directory on upgrades (closes: #887806).
+  * Update symbols files from ia64 and the current amd64 build log.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 03 Feb 2018 19:55:47 +0300
+
+qtbase-opensource-src (5.9.4+dfsg-0ubuntu1) bionic; urgency=medium
+
+  * New upstream release.
+  * Refresh patches, and delete reverse-applicable ones:
+    - qdnslookup_crash.diff
+  * Bump the virtual ABI package to 5.9.4 to make sure the proper
+    packages are rebuilt.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Sun, 28 Jan 2018 18:41:51 -0600
 
 qtbase-opensource-src (5.9.3+dfsg-0ubuntu4) bionic; urgency=medium
 

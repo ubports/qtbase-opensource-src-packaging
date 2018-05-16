@@ -1,0 +1,16 @@
+Description: glx: Fix loading OpenGL library when libGL.so symlink is missing
+Author: Dmitry Shachnev <mitya57@gmail.com>
+Bug: https://bugreports.qt.io/browse/QTBUG-67537
+Bug-Ubuntu: https://launchpad.net/bugs/1761708
+Applied-Upstream: commit:a35c6a4
+--- a/src/plugins/platforms/xcb/gl_integrations/xcb_glx/qglxintegration.cpp
++++ b/src/plugins/platforms/xcb/gl_integrations/xcb_glx/qglxintegration.cpp
+@@ -585,6 +585,8 @@ QFunctionPointer QGLXContext::getProcAdd
+                 extern const QString qt_gl_library_name();
+ //                QLibrary lib(qt_gl_library_name());
+                 QLibrary lib(QLatin1String("GL"));
++                if (!lib.load())
++                    lib.setFileNameAndVersion(QLatin1String("GL"), 1);
+                 glXGetProcAddressARB = (qt_glXGetProcAddressARB) lib.resolve("glXGetProcAddressARB");
+ #endif
+             }

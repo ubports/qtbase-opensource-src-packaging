@@ -4,7 +4,7 @@ Last-Update: 2018-01-19
 
 --- a/src/corelib/global/qnamespace.h
 +++ b/src/corelib/global/qnamespace.h
-@@ -840,6 +840,36 @@
+@@ -842,6 +842,36 @@ public:
          Key_Dead_Belowdot       = 0x01001260,
          Key_Dead_Hook           = 0x01001261,
          Key_Dead_Horn           = 0x01001262,
@@ -82,7 +82,7 @@ Last-Update: 2018-01-19
      \value Key_Stop
 --- a/src/platformsupport/input/libinput/qlibinputkeyboard.cpp
 +++ b/src/platformsupport/input/libinput/qlibinputkeyboard.cpp
-@@ -281,7 +281,7 @@
+@@ -287,7 +287,7 @@ int QLibInputKeyboard::keysymToQtKey(xkb
          *modifiers |= Qt::KeypadModifier;
      } else if (text.length() == 1 && text.unicode()->unicode() > 0x1f
                                    && text.unicode()->unicode() != 0x7f
@@ -93,7 +93,7 @@ Last-Update: 2018-01-19
          // any other keys
 --- a/src/plugins/platforminputcontexts/compose/qcomposeplatforminputcontext.cpp
 +++ b/src/plugins/platforminputcontexts/compose/qcomposeplatforminputcontext.cpp
-@@ -82,7 +82,37 @@
+@@ -82,7 +82,37 @@ static const int composingKeys[] = {
      Qt::Key_Dead_Semivoiced_Sound,
      Qt::Key_Dead_Belowdot,
      Qt::Key_Dead_Hook,
@@ -134,7 +134,7 @@ Last-Update: 2018-01-19
  QComposeInputContext::QComposeInputContext()
 --- a/src/plugins/platforms/mirclient/qmirclientinput.cpp
 +++ b/src/plugins/platforms/mirclient/qmirclientinput.cpp
-@@ -156,6 +156,36 @@
+@@ -156,6 +156,36 @@ static const uint32_t KeyTable[] = {
      XKB_KEY_dead_belowdot,           Qt::Key_Dead_Belowdot,
      XKB_KEY_dead_hook,               Qt::Key_Dead_Hook,
      XKB_KEY_dead_horn,               Qt::Key_Dead_Horn,
@@ -253,7 +253,7 @@ Last-Update: 2018-01-19
  #ifndef XK_Codeinput
  #define XK_Codeinput            0xFF37
  #endif
-@@ -429,6 +490,36 @@
+@@ -429,6 +490,36 @@ static const unsigned int KeyTbl[] = {
      XK_dead_belowdot,           Qt::Key_Dead_Belowdot,
      XK_dead_hook,               Qt::Key_Dead_Hook,
      XK_dead_horn,               Qt::Key_Dead_Horn,
@@ -290,7 +290,7 @@ Last-Update: 2018-01-19
  
      // Special keys from X.org - This include multimedia keys,
          // wireless/bluetooth/uwb keys, special launcher keys, etc.
-@@ -1124,7 +1215,7 @@
+@@ -1124,7 +1215,7 @@ int QXcbKeyboard::keysymToQtKey(xcb_keys
          modifiers |= Qt::KeypadModifier;
      } else if (text.length() == 1 && text.unicode()->unicode() > 0x1f
                                    && text.unicode()->unicode() != 0x7f

@@ -905,6 +905,7 @@ License: LGPL-3 or GPL-2
 Files: mkspecs/common/integrity/qplatformdefs.h
        mkspecs/integrity-armv7-imx6/qplatformdefs.h
        mkspecs/integrity-armv7/qplatformdefs.h
+       mkspecs/integrity-armv8-rcar/qplatformdefs.h
        mkspecs/integrity-x86/qplatformdefs.h
        src/platformsupport/input/integrityhid/qintegrityhidmanager.cpp
        src/platformsupport/input/integrityhid/qintegrityhidmanager.h
@@ -926,7 +927,6 @@ License: LGPL-3 or GPL-2
 
 Files: config.tests/avx512/avx512.cpp
        mkspecs/features/data/unix/findclasslist.pl
-       src/corelib/global/qglobal_p.h
        src/corelib/global/qglobalstatic.h
        src/corelib/global/qglobalstatic.qdoc
        src/corelib/global/qversiontagging.cpp

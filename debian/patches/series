@@ -1,6 +1,8 @@
 # Backported from upstream.
-qdnslookup_crash.diff
 dead_key_symbols.diff
+dbustray_newmenu_signal.diff
+extend_mariadb_define_check.diff
+fix-loading-OpenGL-when-symlink-missing.patch
 
 # Debian specific.
 gnukfreebsd.diff
@@ -12,3 +14,5 @@ armv4.diff
 nonlinux_utime.diff
 
 qt5-qmake-arm-linux-gnueabihf
+# Not yet forwarded.
+hidpi_scale_at_192.diff

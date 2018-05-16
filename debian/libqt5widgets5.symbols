@@ -1,6 +1,6 @@
-# SymbolsHelper-Confirmed: 5.9.1 amd64 armel armhf hurd-i386 i386 kfreebsd-amd64 kfreebsd-i386 m68k mips mipsel powerpc powerpcspe x32
+# SymbolsHelper-Confirmed: 5.9.4 amd64
 libQt5Widgets.so.5 libqt5widgets5 #MINVER#
-| libqt5widgets5 #MINVER#, qtbase-abi-5-9-2
+| libqt5widgets5 #MINVER#, qtbase-abi-5-9-5
 * Build-Depends-Package: qtbase5-dev
  Qt_5.0@Qt_5.0 5.6.0~beta
  Qt_5.1@Qt_5.1 5.6.0~beta
@@ -2097,6 +2097,7 @@ libQt5Widgets.so.5 libqt5widgets5 #MINVER#
  _ZN14QWidgetPrivate18_q_showIfNotHiddenEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZN14QWidgetPrivate18setConstraints_sysEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZN14QWidgetPrivate18setWindowTitle_sysERK7QString@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN14QWidgetPrivate18updateContentsRectEv@Qt_5_PRIVATE_API 5.9.4 1
  _ZN14QWidgetPrivate19fixPosIncludesFrameEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZN14QWidgetPrivate19setNetWmWindowTypesEb@Qt_5_PRIVATE_API 5.7.1 1
  _ZN14QWidgetPrivate19updateIsTranslucentEv@Qt_5_PRIVATE_API 5.0.2 1
@@ -2133,6 +2134,9 @@ libQt5Widgets.so.5 libqt5widgets5 #MINVER#
  _ZN14QWidgetPrivate4initEP7QWidget6QFlagsIN2Qt10WindowTypeEE@Qt_5_PRIVATE_API 5.0.2 1
  _ZN14QWidgetPrivate6mapperE@Qt_5_PRIVATE_API 5.0.2 1
  _ZN14QWidgetPrivate6renderEP12QPaintDeviceRK6QPointRK7QRegion6QFlagsIN7QWidget10RenderFlagEE@Qt_5_PRIVATE_API 5.3.0 1
+ (optional=templinst)_ZN14QWidgetPrivate6updateI5QRectEEvT_@Qt_5_PRIVATE_API 5.9.4 1
+ (optional=templinst)_ZN14QWidgetPrivate6updateI7QRegionEEvT_@Qt_5_PRIVATE_API 5.9.4 1
+ (optional=templinst)_ZN14QWidgetPrivate7repaintI7QRegionEEvT_@Qt_5_PRIVATE_API 5.9.4 1
  _ZN14QWidgetPrivate8hide_sysEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZN14QWidgetPrivate8moveRectERK5QRectii@Qt_5_PRIVATE_API 5.0.2 1
  (subst)_ZN14QWidgetPrivate8setWinIdE{quintptr}@Qt_5_PRIVATE_API 5.0.2 1
@@ -3943,6 +3947,7 @@ libQt5Widgets.so.5 libqt5widgets5 #MINVER#
  _ZN26QAbstractScrollAreaPrivate15flashScrollBarsEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZN26QAbstractScrollAreaPrivate16replaceScrollBarEP10QScrollBarN2Qt11OrientationE@Qt_5_PRIVATE_API 5.0.2 1
  _ZN26QAbstractScrollAreaPrivate19canStartScrollingAtERK6QPoint@Qt_5_PRIVATE_API 5.0.2 1
+ _ZN26QAbstractScrollAreaPrivate21layoutChildren_helperEPbS0_@Qt_5_PRIVATE_API 5.9.4 1
  _ZN26QAbstractScrollAreaPrivate21setScrollBarTransientEP10QScrollBarb@Qt_5_PRIVATE_API 5.0.2 1
  _ZN26QAbstractScrollAreaPrivate23_q_showOrHideScrollBarsEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZN26QAbstractScrollAreaPrivate4initEv@Qt_5_PRIVATE_API 5.0.2 1
@@ -6276,6 +6281,7 @@ libQt5Widgets.so.5 libqt5widgets5 #MINVER#
  _ZNK14QWidgetPrivate13paintOnScreenEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZNK14QWidgetPrivate14childAt_helperERK6QPointb@Qt_5_PRIVATE_API 5.0.2 1
  _ZNK14QWidgetPrivate15paintBackgroundEP8QPainterRK7QRegioni@Qt_5_PRIVATE_API 5.0.2 1
+ _ZNK14QWidgetPrivate15safeAreaMarginsEv@Qt_5_PRIVATE_API 5.9.4 1
  _ZNK14QWidgetPrivate17getOpaqueChildrenEv@Qt_5_PRIVATE_API 5.0.2 1
  _ZNK14QWidgetPrivate17naturalWidgetFontEj@Qt_5_PRIVATE_API 5.0.2 1
  _ZNK14QWidgetPrivate19clipToEffectiveMaskER7QRegion@Qt_5_PRIVATE_API 5.0.2 1
@@ -7586,6 +7592,7 @@ libQt5Widgets.so.5 libqt5widgets5 #MINVER#
  (optional=templinst)_ZNSt3_V28__rotateIP5QRectEET_S3_S3_S3_St26random_access_iterator_tag@Qt_5 5.7.0
  (optional=templinst)_ZNSt3_V28__rotateIPiEET_S2_S2_S2_St26random_access_iterator_tag@Qt_5 5.7.0
  (optional=templinst)_ZNSt6vectorIN18QWidgetLineControl7CommandESaIS1_EE17_M_realloc_insertIJRKS1_EEEvN9__gnu_cxx17__normal_iteratorIPS1_S3_EEDpOT_@Qt_5_PRIVATE_API 5.9.1 1
+ (optional=templinst|arch=!hurd-i386)_ZNSt6vectorIN18QWidgetLineControl7CommandESaIS1_EE17_M_realloc_insertIJS1_EEEvN9__gnu_cxx17__normal_iteratorIPS1_S3_EEDpOT_@Qt_5_PRIVATE_API 5.9.2 1
  (optional=templinst|arch=armel armhf hurd-i386 i386 kfreebsd-i386 m68k mips mipsel powerpc powerpcspe)_ZNSt6vectorIN18QWidgetLineControl7CommandESaIS1_EE8_M_eraseEN9__gnu_cxx17__normal_iteratorIPS1_S3_EES7_@Qt_5_PRIVATE_API 5.7.1 1
  (optional=templinst|arch=armel armhf hurd-i386 i386 kfreebsd-i386 m68k mips mipsel powerpc powerpcspe)_ZSt4swapIN8QVariant7PrivateEENSt9enable_ifIXsrSt6__and_IJSt6__not_ISt15__is_tuple_likeIT_EESt21is_move_constructibleIS6_ESt18is_move_assignableIS6_EEE5valueEvE4typeERS6_SG_@Qt_5 5.9.1
  _ZTI10QBoxLayout@Qt_5 5.0.2

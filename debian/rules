@@ -61,48 +61,8 @@ endif
 
 %:
 	dh $@ --parallel --with pkgkde_symbolshelper
-	
-x86_architectures := i386 amd64
 
 override_dh_auto_configure:
-ifeq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(x86_architectures)))
-	MAKEFLAGS="-j$(NUMJOBS) ${CXXFLAGS:%=EXTRA_CXXFLAGS+=%} ${LDFLAGS:%=EXTRA_LFLAGS+=%}" \
-	        ./configure \
-	            -confirm-license \
-            -prefix "/usr" \
-            -bindir "/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/bin" \
-            -libdir "/usr/lib/arm-linux-gnueabihf" \
-            -docdir "/usr/share/qt5/doc" \
-            -headerdir "/usr/include/arm-linux-gnueabihf/qt5" \
-            -datadir "/usr/share/qt5" \
-            -archdatadir "/usr/lib/arm-linux-gnueabihf/qt5" \
-            -hostdatadir "/usr/share/qt5" \
-            -plugindir "/usr/lib/arm-linux-gnueabihf/qt5/plugins" \
-            -importdir "/usr/lib/arm-linux-gnueabihf/qt5/imports" \
-            -translationdir "/usr/share/qt5/translations" \
-            -hostdatadir "/usr/lib/arm-linux-gnueabihf/qt5" \
-            -sysconfdir "/etc/xdg" \
-            -examplesdir "/usr/lib/arm-linux-gnueabihf/qt5/examples" \
-            -opensource \
-            --no-dbus \
-            --no-libjpeg \
-            --no-glib \
-            -platform linux-g++ \
-            -qt-zlib \
-            -no-rpath \
-            -verbose \
-            -optimized-qmake \
-            -no-strip \
-            -no-separate-debug-info \
-            -qpa xcb \
-            -xcb \
-            -no-icu \
-            -accessibility \
-            -no-directfb \
-            -no-sql-ibase -no-pch -no-opengl \
-            -xplatform ubuntu-arm-gnueabihf-g++ || file $(CURDIR)/bin/qmake;
-	mv $(CURDIR)/bin/qmake  $(CURDIR)/bin/qt5-qmake-arm-linux-gnueabihf
-endif
 	MAKEFLAGS="-j$(NUMJOBS) ${CXXFLAGS:%=EXTRA_CXXFLAGS+=%} ${LDFLAGS:%=EXTRA_LFLAGS+=%}" \
 	        ./configure \
 	            -confirm-license \
@@ -266,12 +226,6 @@ endif
 	# Configuration file for qt5-default package
 	mkdir -p $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/qtchooser
 	ln -s /usr/share/qtchooser/qt5-$(DEB_HOST_MULTIARCH).conf $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/qtchooser/default.conf
-	
-ifeq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(x86_architectures)))
-	# ship the qt5-qmake-arm-linux-gnueabihf in /usr/bin
-	mkdir -p $(CURDIR)/debian/tmp/usr/bin
-	cp $(CURDIR)/bin/qt5-qmake-arm-linux-gnueabihf $(CURDIR)/debian/tmp/usr/bin
-endif
 
 	# Remove leftover directories
 	find $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/qt5 -depth -type d \( -false \

@@ -1,0 +1,52 @@
+Description: dbustray: add NewMenu signal and emit it when menu changed
+Origin: upstream, https://code.qt.io/cgit/qt/qtbase.git/commit/?id=ff169e8859457188
+Last-Update: 2018-02-23
+
+--- a/src/3rdparty/dbus-ifaces/org.kde.StatusNotifierItem.xml
++++ b/src/3rdparty/dbus-ifaces/org.kde.StatusNotifierItem.xml
+@@ -85,6 +85,9 @@
+     <signal name="NewOverlayIcon">
+     </signal>
+ 
++    <signal name="NewMenu">
++    </signal>
++
+     <signal name="NewToolTip">
+     </signal>
+ 
+--- a/src/platformsupport/themes/genericunix/dbustray/qdbustrayicon.cpp
++++ b/src/platformsupport/themes/genericunix/dbustray/qdbustrayicon.cpp
+@@ -126,6 +126,7 @@
+     connect(this, SIGNAL(tooltipChanged()), m_adaptor, SIGNAL(NewToolTip()));
+     connect(this, SIGNAL(iconChanged()), m_adaptor, SIGNAL(NewIcon()));
+     connect(this, SIGNAL(attention()), m_adaptor, SIGNAL(NewAttentionIcon()));
++    connect(this, SIGNAL(menuChanged()), m_adaptor, SIGNAL(NewMenu()));
+     connect(this, SIGNAL(attention()), m_adaptor, SIGNAL(NewTitle()));
+     connect(&m_attentionTimer, SIGNAL(timeout()), this, SLOT(attentionTimerExpired()));
+     m_attentionTimer.setSingleShot(true);
+@@ -268,6 +269,7 @@
+         connect(m_menu, SIGNAL(updated(uint,int)),
+                 m_menuAdaptor, SIGNAL(LayoutUpdated(uint,int)));
+         dBusConnection()->registerTrayIconMenu(this);
++        emit menuChanged();
+     }
+ }
+ 
+--- a/src/platformsupport/themes/genericunix/dbustray/qstatusnotifieritemadaptor_p.h
++++ b/src/platformsupport/themes/genericunix/dbustray/qstatusnotifieritemadaptor_p.h
+@@ -129,6 +129,7 @@
+ "    <signal name=\"NewIcon\"/>\n"
+ "    <signal name=\"NewAttentionIcon\"/>\n"
+ "    <signal name=\"NewOverlayIcon\"/>\n"
++"    <signal name=\"NewMenu\"/>\n"
+ "    <signal name=\"NewToolTip\"/>\n"
+ "    <signal name=\"NewStatus\">\n"
+ "      <arg type=\"s\" name=\"status\"/>\n"
+@@ -191,6 +192,7 @@
+     void NewAttentionIcon();
+     void NewIcon();
+     void NewOverlayIcon();
++    void NewMenu();
+     void NewStatus(const QString &status);
+     void NewTitle();
+     void NewToolTip();
