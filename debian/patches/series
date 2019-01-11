@@ -1,4 +1,5 @@
 # Backported from upstream.
+cldr-34-update.patch
 dead_key_symbols.diff
 dbustray_newmenu_signal.diff
 extend_mariadb_define_check.diff

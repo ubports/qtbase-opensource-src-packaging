@@ -1,3 +1,9 @@
+qtbase-opensource-src (5.9.5+dfsg-0ubports2) xenial; urgency=medium
+
+  * Updated QtLocale database to CLDR-34 due to missing entries
+
+ -- Florian Leeber <florian@ubports.com>  Thu, 10 Jan 2019 22:14:04 +0100
+
 qtbase-opensource-src (5.9.5+dfsg-0ubports1) xenial; urgency=medium
 
   [ Simon Quigley ]
