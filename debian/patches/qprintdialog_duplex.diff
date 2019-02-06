@@ -1,0 +1,88 @@
+Description: Unix print dialog: Properly initialize duplex
+Origin: upstream, commits:
+ https://code.qt.io/cgit/qt/qtbase.git/commit/?id=f6fd3f18d301cde3
+ https://code.qt.io/cgit/qt/qtbase.git/commit/?id=fa854f214a3c812e
+Last-Update: 2019-02-06
+
+--- a/src/printsupport/dialogs/qprintdialog_unix.cpp
++++ b/src/printsupport/dialogs/qprintdialog_unix.cpp
+@@ -225,6 +225,10 @@ public:
+     QDialogButtonBox *buttons;
+     QPushButton *collapseButton;
+     QPrinter::OutputFormat printerOutputFormat;
++private:
++    void setExplicitDuplexMode(QPrint::DuplexMode duplexMode);
++    // duplex mode explicitly set by user, QPrint::DuplexAuto otherwise
++    QPrint::DuplexMode explicitDuplexMode;
+ };
+ 
+ 
+@@ -298,7 +302,8 @@ void QPrintPropertiesDialog::selectPrint
+ 
+ */
+ QPrintDialogPrivate::QPrintDialogPrivate()
+-    : top(0), bottom(0), buttons(0), collapseButton(0)
++    : top(0), bottom(0), buttons(0), collapseButton(0),
++      explicitDuplexMode(QPrint::DuplexAuto)
+ {
+     initResources();
+ }
+@@ -357,6 +362,10 @@ void QPrintDialogPrivate::init()
+                      q, SLOT(_q_togglePageSetCombo(bool)));
+ 
+     QObject::connect(collapseButton, SIGNAL(released()), q, SLOT(_q_collapseOrExpandDialog()));
++
++    QObject::connect(options.noDuplex, &QAbstractButton::clicked, q, [this] { setExplicitDuplexMode(QPrint::DuplexNone); });
++    QObject::connect(options.duplexLong, &QAbstractButton::clicked, q, [this] { setExplicitDuplexMode(QPrint::DuplexLongSide); });
++    QObject::connect(options.duplexShort, &QAbstractButton::clicked, q, [this] { setExplicitDuplexMode(QPrint::DuplexShortSide); });
+ }
+ 
+ // initialize printer options
+@@ -366,18 +375,30 @@ void QPrintDialogPrivate::selectPrinter(
+         QPrinter *p = q->printer();
+         printerOutputFormat = outputFormat;
+ 
++        // printer supports duplex mode?
++        const auto supportedDuplexMode = top->d->m_currentPrintDevice.supportedDuplexModes();
++        options.duplexLong->setEnabled(supportedDuplexMode.contains(QPrint::DuplexLongSide));
++        options.duplexShort->setEnabled(supportedDuplexMode.contains(QPrint::DuplexShortSide));
++
+         if (p->colorMode() == QPrinter::Color)
+             options.color->setChecked(true);
+         else
+             options.grayscale->setChecked(true);
+ 
+-        switch (p->duplex()) {
+-        case QPrinter::DuplexNone:
++        // keep duplex value explicitly set by user, if any, and selected printer supports it;
++        // use device default otherwise
++        QPrint::DuplexMode duplex;
++        if (explicitDuplexMode != QPrint::DuplexAuto && supportedDuplexMode.contains(explicitDuplexMode))
++            duplex = explicitDuplexMode;
++        else
++            duplex = top->d->m_currentPrintDevice.defaultDuplexMode();
++        switch (duplex) {
++        case QPrint::DuplexNone:
+             options.noDuplex->setChecked(true); break;
+-        case QPrinter::DuplexLongSide:
+-        case QPrinter::DuplexAuto:
++        case QPrint::DuplexLongSide:
++        case QPrint::DuplexAuto:
+             options.duplexLong->setChecked(true); break;
+-        case QPrinter::DuplexShortSide:
++        case QPrint::DuplexShortSide:
+             options.duplexShort->setChecked(true); break;
+         }
+         options.copies->setValue(p->copyCount());
+@@ -398,6 +419,11 @@ void QPrintDialogPrivate::applyPrinterPr
+     top->d->applyPrinterProperties();
+ }
+ 
++void QPrintDialogPrivate::setExplicitDuplexMode(const QPrint::DuplexMode duplexMode)
++{
++    explicitDuplexMode = duplexMode;
++}
++
+ void QPrintDialogPrivate::setupPrinter()
+ {
+     // First setup the requested OutputFormat, Printer and Page Size first
