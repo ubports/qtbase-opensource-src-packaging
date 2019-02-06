@@ -1,3 +1,10 @@
+qtbase-opensource-src (5.9.5+dfsg-0ubuntu2) bionic; urgency=medium
+
+  * Backport two upstream commits to fix duplex printing (LP: #1776173).
+    Thanks to Robert Bredereck for the initial patch!
+
+ -- Dmitry Shachnev <mitya57@ubuntu.com>  Wed, 06 Feb 2019 10:47:55 +0300
+
 qtbase-opensource-src (5.9.5+dfsg-0ubports2+rebuild1) xenial; urgency=medium
 
   * Update Jenkinsfile as of ubports/build-tools@0af3831
