@@ -5,6 +5,9 @@ dbustray_newmenu_signal.diff
 extend_mariadb_define_check.diff
 fix-loading-OpenGL-when-symlink-missing.patch
 qprintdialog_duplex.diff
+CVE-2018-15518.patch
+CVE-2018-19870.patch
+CVE-2018-19873.patch
 
 # Debian specific.
 gnukfreebsd.diff

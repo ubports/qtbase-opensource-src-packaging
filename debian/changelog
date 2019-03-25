@@ -1,3 +1,20 @@
+qtbase-opensource-src (5.9.5+dfsg-0ubuntu2.1) bionic-security; urgency=medium
+
+  * SECURITY UPDATE: double-free or corruption via illegal XML document
+    - debian/patches/CVE-2018-15518.patch: fix possible heap corruption in
+      QXmlStream in src/corelib/xml/qxmlstream_p.h.
+    - CVE-2018-15518
+  * SECURITY UPDATE: NULL pointer dereference in QGifHandler
+    - debian/patches/CVE-2018-19870.patch: check for QImage allocation
+      failure in src/plugins/imageformats/gif/qgifhandler.cpp.
+    - CVE-2018-19870
+  * SECURITY UPDATE: buffer overflow in QBmpHandler
+    - debian/patches/CVE-2018-19873.patch: check for out of range image
+      size in src/gui/image/qbmphandler.cpp.
+    - CVE-2018-19873
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Mon, 25 Mar 2019 11:03:42 -0400
+
 qtbase-opensource-src (5.9.5+dfsg-0ubuntu2) bionic; urgency=medium
 
   * Backport two upstream commits to fix duplex printing (LP: #1776173).
