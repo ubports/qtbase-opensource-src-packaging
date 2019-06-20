@@ -8,6 +8,9 @@ qprintdialog_duplex.diff
 CVE-2018-15518.patch
 CVE-2018-19870.patch
 CVE-2018-19873.patch
+refactor_updateModifiers.patch
+support_legacy_x11_keymaps.patch
+http_nullptr_dereference.patch
 
 # Debian specific.
 gnukfreebsd.diff

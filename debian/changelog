@@ -1,3 +1,17 @@
+qtbase-opensource-src (5.9.5+dfsg-0ubuntu2.3) bionic; urgency=medium
+
+  * Backport upstream patch to fix nullptr dereference in HTTP handler
+    (LP: #1833536).
+
+ -- Dmitry Shachnev <mitya57@ubuntu.com>  Thu, 20 Jun 2019 13:59:52 +0300
+
+qtbase-opensource-src (5.9.5+dfsg-0ubuntu2.2) bionic; urgency=medium
+
+  * Backport two upstream patches to support legacy X11 keymaps
+    (LP: #1831505).
+
+ -- Dmitry Shachnev <mitya57@ubuntu.com>  Sat, 08 Jun 2019 10:32:11 +0300
+
 qtbase-opensource-src (5.9.5+dfsg-0ubuntu2.1) bionic-security; urgency=medium
 
   * SECURITY UPDATE: double-free or corruption via illegal XML document
