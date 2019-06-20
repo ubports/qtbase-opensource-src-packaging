@@ -1,0 +1,23 @@
+Description: don't retry a ssl connection if encryption was never finished
+ As explained in the inline comment we don't actually have a
+ protocol handler until we're done encrypting when we use SSL, but we
+ would still retry the connection if an error occurred between
+ "connected" and "encrypted". This would then lead us to fail an assert
+ that checked if a protocol handler had been set.
+Origin: upstream, https://code.qt.io/cgit/qt/qtbase.git/commit/?id=e431a3ac027915db
+Last-Update: 2019-06-20
+
+--- a/src/network/access/qhttpnetworkconnectionchannel.cpp
++++ b/src/network/access/qhttpnetworkconnectionchannel.cpp
+@@ -884,7 +884,10 @@ void QHttpNetworkConnectionChannel::_q_e
+         } else if (state != QHttpNetworkConnectionChannel::IdleState && state != QHttpNetworkConnectionChannel::ReadingState) {
+             // Try to reconnect/resend before sending an error.
+             // While "Reading" the _q_disconnected() will handle this.
+-            if (reconnectAttempts-- > 0) {
++            // If we're using ssl then the protocolHandler is not initialized until
++            // "encrypted" has been emitted, since retrying requires the protocolHandler (asserted)
++            // we will not try if encryption is not done.
++            if (!pendingEncrypt && reconnectAttempts-- > 0) {
+                 resendCurrentRequest();
+                 return;
+             } else {
