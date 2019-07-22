@@ -17,3 +17,4 @@ nonlinux_utime.diff
 qt5-qmake-arm-linux-gnueabihf
 # Not yet forwarded.
 hidpi_scale_at_192.diff
+qt-gen-headers.diff

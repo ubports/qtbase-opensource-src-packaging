@@ -1,0 +1,41 @@
+diff --git a/mkspecs/features/qt_module.prf b/mkspecs/features/qt_module.prf
+index 8a8c17f01b..d9522cf1a4 100644
+--- a/mkspecs/features/qt_module.prf
++++ b/mkspecs/features/qt_module.prf
+@@ -13,8 +13,9 @@ isEmpty(MODULE):MODULE = $$section($$list($$basename(_PRO_FILE_)), ., 0, 0)
+ isEmpty(VERSION): VERSION = $$MODULE_VERSION
+ isEmpty(VERSION): error("Module does not define version.")
+ 
+-exists($$OUT_PWD/qt$${MODULE}-config.pri) {
+-    include($$OUT_PWD/qt$${MODULE}-config.pri)
++isEmpty(MODULE_CFG_FILE): MODULE_CFG_FILE = qt$${MODULE}-config
++exists($$OUT_PWD/$${MODULE_CFG_FILE}.pri) {
++    include($$OUT_PWD/$${MODULE_CFG_FILE}.pri)
+     CONFIG += generated_privates
+ }
+ 
+diff --git a/mkspecs/features/qt_module_headers.prf b/mkspecs/features/qt_module_headers.prf
+index 5a0342a73e..7ab107f5dd 100644
+--- a/mkspecs/features/qt_module_headers.prf
++++ b/mkspecs/features/qt_module_headers.prf
+@@ -108,14 +108,15 @@ alien_syncqt: return()
+ 
+ MODULE_INC_OUTDIR = $$MODULE_BASE_OUTDIR/include/$$MODULE_INCNAME
+ 
+-exists($$OUT_PWD/qt$${MODULE}-config.h) {
++isEmpty(MODULE_CFG_FILE): MODULE_CFG_FILE = qt$${MODULE}-config
++exists($$OUT_PWD/$${MODULE_CFG_FILE}.h) {
+     fwd_rel = $$relative_path($$OUT_PWD, $$MODULE_INC_OUTDIR)
+     SYNCQT.INJECTIONS += \
+-        $$fwd_rel/qt$${MODULE}-config.h:qt$${MODULE}-config.h \
+-        $$fwd_rel/qt$${MODULE}-config_p.h:$$MODULE_VERSION/$$MODULE_INCNAME/private/qt$${MODULE}-config_p.h
++        $$fwd_rel/$${MODULE_CFG_FILE}.h:$${MODULE_CFG_FILE}.h \
++        $$fwd_rel/$${MODULE_CFG_FILE}_p.h:$$MODULE_VERSION/$$MODULE_INCNAME/private/$${MODULE_CFG_FILE}_p.h
+     inst_rel = $$relative_path($$OUT_PWD, $$_PRO_FILE_PWD_)
+-    SYNCQT.HEADER_FILES += $$inst_rel/qt$${MODULE}-config.h
+-    SYNCQT.INJECTED_PRIVATE_HEADER_FILES += $$inst_rel/qt$${MODULE}-config_p.h
++    SYNCQT.HEADER_FILES += $$inst_rel/$${MODULE_CFG_FILE}.h
++    SYNCQT.INJECTED_PRIVATE_HEADER_FILES += $$inst_rel/$${MODULE_CFG_FILE}_p.h
+ }
+ 
+ for (injection, SYNCQT.INJECTIONS) {
