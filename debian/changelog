@@ -1,3 +1,9 @@
+qtbase-opensource-src (5.9.5+dfsg-0ubuntu2.4) bionic; urgency=medium
+
+  * Fix default paper size in the print dialog (LP: #1846821).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 31 Oct 2019 00:00:50 +0300
+
 qtbase-opensource-src (5.9.5+dfsg-0ubuntu2.3) bionic; urgency=medium
 
   * Backport upstream patch to fix nullptr dereference in HTTP handler
