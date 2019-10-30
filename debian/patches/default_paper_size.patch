@@ -1,0 +1,93 @@
+Description: QPageSetupWidget::setPrinter: Use printdevice default paper size
+Origin: upstream, https://code.qt.io/cgit/qt/qtbase.git/commit/?id=ff67dedaaff2dc68
+Last-Update: 2019-10-30
+
+--- a/src/printsupport/dialogs/qpagesetupdialog_unix.cpp
++++ b/src/printsupport/dialogs/qpagesetupdialog_unix.cpp
+@@ -210,7 +210,7 @@ void QUnixPageSetupDialogPrivate::init()
+     Q_Q(QPageSetupDialog);
+ 
+     widget = new QPageSetupWidget(q);
+-    widget->setPrinter(printer);
++    widget->setPrinter(printer, nullptr);
+ 
+     QDialogButtonBox *buttons = new QDialogButtonBox(QDialogButtonBox::Ok
+                                                      | QDialogButtonBox::Cancel,
+@@ -372,12 +372,16 @@ void QPageSetupWidget::initPageSizes()
+ 
+ // Set the dialog to use the given QPrinter
+ // Usually only called on first creation
+-void QPageSetupWidget::setPrinter(QPrinter *printer)
++void QPageSetupWidget::setPrinter(QPrinter *printer, QPrintDevice *printDevice)
+ {
+     m_printer = printer;
+ 
+     // Initialize the layout to the current QPrinter layout
+     m_pageLayout = m_printer->pageLayout();
++
++    if (printDevice)
++        m_pageLayout.setPageSize(printDevice->defaultPageSize());
++
+     // Assume if margins are Points then is by default, so set to locale default units
+     if (m_pageLayout.units() == QPageLayout::Point) {
+         if (QLocale().measurementSystem() == QLocale::MetricSystem)
+--- a/src/printsupport/dialogs/qpagesetupdialog_unix_p.h
++++ b/src/printsupport/dialogs/qpagesetupdialog_unix_p.h
+@@ -64,6 +64,7 @@ QT_REQUIRE_CONFIG(printdialog);
+ QT_BEGIN_NAMESPACE
+ 
+ class QPrinter;
++class QPrintDevice;
+ class QPagePreview;
+ 
+ class QPageSetupWidget : public QWidget {
+@@ -72,7 +73,7 @@ public:
+     explicit QPageSetupWidget(QWidget *parent = 0);
+     explicit QPageSetupWidget(QPrinter *printer, QWidget *parent = 0);
+ 
+-    void setPrinter(QPrinter *printer);
++    void setPrinter(QPrinter *printer, QPrintDevice *printDevice);
+     void selectPrinter(QPrinter::OutputFormat outputFormat, const QString &printerName);
+     void setupPrinter() const;
+ 
+--- a/src/printsupport/dialogs/qprintdialog_unix.cpp
++++ b/src/printsupport/dialogs/qprintdialog_unix.cpp
+@@ -130,7 +130,7 @@ public:
+     void selectPrinter(QPrinter::OutputFormat outputFormat, const QString &printerName);
+ 
+     /// copy printer properties to the widget
+-    void applyPrinterProperties(QPrinter *p);
++    void applyPrinterProperties(QPrinter *p, QPrintDevice *printDevice);
+     void setupPrinter() const;
+ 
+ private:
+@@ -269,9 +269,9 @@ QPrintPropertiesDialog::~QPrintPropertie
+ {
+ }
+ 
+-void QPrintPropertiesDialog::applyPrinterProperties(QPrinter *p)
++void QPrintPropertiesDialog::applyPrinterProperties(QPrinter *p, QPrintDevice *printDevice)
+ {
+-    widget.pageSetup->setPrinter(p);
++    widget.pageSetup->setPrinter(p, printDevice);
+ #if QT_CONFIG(cupsjobwidget)
+     m_jobOptions->setPrinter(p);
+ #endif
+@@ -867,7 +867,7 @@ void QUnixPrintWidgetPrivate::applyPrint
+     // PDF printer not added to the dialog yet, we'll handle those cases in QUnixPrintWidgetPrivate::updateWidget
+ 
+     if (propertiesDialog)
+-        propertiesDialog->applyPrinterProperties(printer);
++        propertiesDialog->applyPrinterProperties(printer, &m_currentPrintDevice);
+ }
+ 
+ #if QT_CONFIG(messagebox)
+@@ -932,7 +932,7 @@ void QUnixPrintWidgetPrivate::setupPrint
+     propertiesDialog->setResult(QDialog::Rejected);
+     propertiesDialogShown = false;
+ 
+-    propertiesDialog->applyPrinterProperties(q->printer());
++    propertiesDialog->applyPrinterProperties(q->printer(), &m_currentPrintDevice);
+ 
+     if (q->isOptionEnabled(QPrintDialog::PrintToFile)
+         && (widget.printers->currentIndex() == widget.printers->count() - 1)) {// PDF

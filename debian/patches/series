@@ -11,6 +11,7 @@ CVE-2018-19873.patch
 refactor_updateModifiers.patch
 support_legacy_x11_keymaps.patch
 http_nullptr_dereference.patch
+default_paper_size.patch
 
 # Debian specific.
 gnukfreebsd.diff
