@@ -1,3 +1,9 @@
+qtbase-opensource-src (5.9.5+dfsg-0ubports2+rebuild1) xenial; urgency=medium
+
+  * Update Jenkinsfile as of ubports/build-tools@0af3831
+
+ -- Ratchanan Srirattanamet <ratchanan@ubports.com>  Tue, 17 Dec 2019 16:09:58 +0700
+
 qtbase-opensource-src (5.9.5+dfsg-0ubports2) xenial; urgency=medium
 
   * Updated QtLocale database to CLDR-34 due to missing entries
