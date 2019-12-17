@@ -1,10 +1,13 @@
+String stashFileList = '*.gz,*.bz2,*.xz,*.deb,*.ddeb,*.udeb,*.dsc,*.changes,*.buildinfo,lintian.txt'
+String archiveFileList = '*.gz,*.bz2,*.xz,*.deb,*.ddeb,*.udeb,*.dsc,*.changes,*.buildinfo'
+
 pipeline {
   agent any
   stages {
     stage('Build source') {
       steps {
         sh '/usr/bin/build-source.sh'
-        stash(name: 'source', includes: '*.gz,*.bz2,*.xz,*.deb,*.dsc,*.changes,*.buildinfo,lintian.txt')
+        stash(name: 'source', includes: stashFileList)
         cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
       }
     }
@@ -16,9 +19,8 @@ pipeline {
               cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
               unstash 'source'
               sh '''export architecture="armhf"
-export FORCE_BINARY_ONLY=true
 build-binary.sh'''
-              stash(includes: '*.gz,*.bz2,*.xz,*.deb,*.dsc,*.changes,*.buildinfo,lintian.txt', name: 'build-armhf')
+              stash(includes: stashFileList, name: 'build-armhf')
               cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
             }
 
@@ -29,9 +31,8 @@ build-binary.sh'''
               cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
               unstash 'source'
               sh '''export architecture="arm64"
-              export FORCE_BINARY_ONLY=true
     build-binary.sh'''
-              stash(includes: '*.gz,*.bz2,*.xz,*.deb,*.dsc,*.changes,*.buildinfo,lintian.txt', name: 'build-arm64')
+              stash(includes: stashFileList, name: 'build-arm64')
               cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
             }
           },
@@ -40,9 +41,8 @@ build-binary.sh'''
               cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
               unstash 'source'
               sh '''export architecture="amd64"
-              export FORCE_BINARY_ONLY=true
     build-binary.sh'''
-              stash(includes: '*.gz,*.bz2,*.xz,*.deb,*.dsc,*.changes,*.buildinfo,lintian.txt', name: 'build-amd64')
+              stash(includes: stashFileList, name: 'build-amd64')
               cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
             }
           }
@@ -55,7 +55,7 @@ build-binary.sh'''
         unstash 'build-armhf'
         unstash 'build-arm64'
         unstash 'build-amd64'
-        archiveArtifacts(artifacts: '*.gz,*.bz2,*.xz,*.deb,*.dsc,*.changes,*.buildinfo', fingerprint: true, onlyIfSuccessful: true)
+        archiveArtifacts(artifacts: archiveFileList, fingerprint: true, onlyIfSuccessful: true)
         sh '''/usr/bin/build-repo.sh'''
       }
     }
