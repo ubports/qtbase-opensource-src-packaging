@@ -1,3 +1,9 @@
+qtbase-opensource-src (5.12.5+dfsg-8ubports1) xenial; urgency=medium
+
+  * Import to ubports
+
+ -- Marius Gripsgard <marius@ubports.com>  Thu, 06 Feb 2020 11:26:56 +0100
+
 qtbase-opensource-src (5.12.5+dfsg-8) unstable; urgency=medium
 
   * Revert adding alternative qtbase5-gles-dev dependencies:
