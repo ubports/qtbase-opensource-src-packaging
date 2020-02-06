@@ -103,7 +103,6 @@ endif
 	            -plugin-sql-tds \
 	            -system-sqlite \
 	            -platform $(platform_arg) \
-	            -system-harfbuzz \
 	            -system-zlib \
 	            -system-libpng \
 	            -system-libjpeg \
