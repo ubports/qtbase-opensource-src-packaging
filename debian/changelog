@@ -1,3 +1,16 @@
+qtbase-opensource-src (5.9.5+dfsg-0ubuntu2.5) bionic-security; urgency=medium
+
+  * SECURITY UPDATE: division-by-zero via malformed PPM image
+    - debian/patches/CVE-2018-19872.patch: add extra check to
+      src/gui/image/qppmhandler.cpp.
+    - CVE-2018-19872
+  * SECURITY UPDATE: QPluginLoader loads plugins from the CWD
+    - debian/patches/CVE-2020-0569.patch: do not load plugin from the $PWD
+      in src/corelib/plugin/qpluginloader.cpp.
+    - CVE-2020-0569
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Fri, 07 Feb 2020 10:41:20 -0500
+
 qtbase-opensource-src (5.9.5+dfsg-0ubuntu2.4) bionic; urgency=medium
 
   * Fix default paper size in the print dialog (LP: #1846821).
