@@ -25,3 +25,5 @@ nonlinux_utime.diff
 qt5-qmake-arm-linux-gnueabihf
 # Not yet forwarded.
 hidpi_scale_at_192.diff
+CVE-2018-19872.patch
+CVE-2020-0569.patch
