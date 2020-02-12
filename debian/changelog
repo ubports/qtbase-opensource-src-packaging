@@ -1,3 +1,10 @@
+qtbase-opensource-src (5.9.5+dfsg-0ubports3) xenial; urgency=medium
+
+  * Import changes in Ubuntu bionic upto 5.9.5+dfsg-0ubuntu2.5
+    - This includes 2 security updates.
+
+ -- Ratchanan Srirattanamet <ratchanan@ubports.com>  Wed, 12 Feb 2020 22:56:44 +0700
+
 qtbase-opensource-src (5.9.5+dfsg-0ubuntu2.5) bionic-security; urgency=medium
 
   * SECURITY UPDATE: division-by-zero via malformed PPM image
